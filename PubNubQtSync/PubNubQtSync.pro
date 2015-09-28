@@ -10,6 +10,17 @@ SOURCES += main.cpp pubnub_qt.cpp pubnub_qt_gui_sample.cpp $$PWD/../c-core/core/
 INCLUDEPATH += $$PWD/../c-core/core
 DEPENDPATH += $$PWD/../c-core/core
 
+RESOURCES += \
+    dashboard.qrc
+
+OTHER_FILES += \
+    qml/dashboard.qml \
+    qml/DashboardGaugeStyle.qml \
+    qml/IconGaugeStyle.qml \
+    qml/TachometerStyle.qml \
+    qml/TurnIndicator.qml \
+    qml/ValueSource.qml
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 #QML_IMPORT_PATH =
 
