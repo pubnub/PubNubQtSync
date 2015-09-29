@@ -1,17 +1,17 @@
 /* -*- c-file-style:"stroustrup"; indent-tabs-mode: nil -*- */
 #include "pubnub_qt.h"
 
-#include <QDialog>
+#include <QObject>
 
 
-QT_BEGIN_NAMESPACE
-class QLineEdit;
-class QTextEdit;
-QT_END_NAMESPACE
+//QT_BEGIN_NAMESPACE
+//class QLineEdit;
+//class QTextEdit;
+//QT_END_NAMESPACE
 
 
 
-class pubnub_qt_gui_sample : public QDialog {
+class pubnub_qt_gui_sample : public QObject {
     Q_OBJECT
   
 public:
@@ -27,12 +27,12 @@ private slots:
     void channelChanged();
             
 private:
-    QLineEdit *d_channel;
-    QLineEdit *d_pubkey;
-    QLineEdit *d_keysub;
+//    QLineEdit *d_channel;
+//    QLineEdit *d_pubkey;
+//    QLineEdit *d_keysub;
 
-    QLineEdit *d_message;
-    QTextEdit *d_console;
+//    QLineEdit *d_message;
+//    QTextEdit *d_console;
 
     QScopedPointer<pubnub_qt> d_pb_publish;
     QScopedPointer<pubnub_qt> d_pb_subscribe;

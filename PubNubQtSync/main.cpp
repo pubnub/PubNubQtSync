@@ -47,21 +47,25 @@
 #include <QDebug>
 
 #include "pubnub_qt_gui_sample.h"
+//#include "pubnubqml.h"
 
 int main(int argc, char *argv[])
 {
-//    QGuiApplication app(argc, argv);
-//    qDebug() << "Debug Message";
+    QGuiApplication app(argc, argv);
+    qDebug() << "Debug Message";
 
-//    QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
-//    app.setFont(QFont("DejaVu Sans"));
+    QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
+    app.setFont(QFont("DejaVu Sans"));
 
-//    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
+    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
 
-    QApplication app(argc, argv);
+//    QApplication app(argc, argv);
+//    pubnub_qt_gui_sample sample;
+
+//    sample.show();
+//    PubNubQML sample;
+//    sample.execute();
     pubnub_qt_gui_sample sample;
-
-    sample.show();
 
     return app.exec();
 }
