@@ -38,14 +38,18 @@
 **
 ****************************************************************************/
 
-//#include <QtGui/QGuiApplication>
-//#include <QtQml/QQmlApplicationEngine>
-//#include <QtGui/QFont>
-//#include <QtGui/QFontDatabase>
-//#include <QDebug>
 
-//int main(int argc, char *argv[])
-//{
+#include <QtGui/QGuiApplication>
+#include <QtQml/QQmlApplicationEngine>
+#include <QtGui/QFont>
+#include <QtGui/QFontDatabase>
+#include <QApplication>
+#include <QDebug>
+
+#include "pubnub_qt_gui_sample.h"
+
+int main(int argc, char *argv[])
+{
 //    QGuiApplication app(argc, argv);
 //    qDebug() << "Debug Message";
 
@@ -53,5 +57,11 @@
 //    app.setFont(QFont("DejaVu Sans"));
 
 //    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
-//    return app.exec();
-//}
+
+    QApplication app(argc, argv);
+    pubnub_qt_gui_sample sample;
+
+    sample.show();
+
+    return app.exec();
+}

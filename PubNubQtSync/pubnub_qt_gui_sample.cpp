@@ -5,7 +5,7 @@ extern "C" {
 #include "pubnub_helper.h"
 }
 
-#include <QApplication>
+//#include <QApplication>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
@@ -123,13 +123,13 @@ void pubnub_qt_gui_sample::messageChanged()
 }
 
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    pubnub_qt_gui_sample sample;
+//int main(int argc, char *argv[])
+//{
+//    QApplication app(argc, argv);
+//    pubnub_qt_gui_sample sample;
     
-    sample.show();
+////    sample.show();
     
-    return app.exec();
-}
+//    return app.exec();
+//}
 
