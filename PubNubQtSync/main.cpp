@@ -45,6 +45,7 @@
 #include <QtGui/QFontDatabase>
 #include <QApplication>
 #include <QDebug>
+#include <QQmlComponent>
 
 #include "pubnub_qt_gui_sample.h"
 //#include "pubnubqml.h"
@@ -58,6 +59,7 @@ int main(int argc, char *argv[])
     app.setFont(QFont("DejaVu Sans"));
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
+    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
 
 //    QApplication app(argc, argv);
 //    pubnub_qt_gui_sample sample;
