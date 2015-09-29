@@ -45,6 +45,7 @@
 #include <QtGui/QFontDatabase>
 #include <QApplication>
 #include <QDebug>
+#include <QtDeclarative/QDeclarativeView>
 
 #include "pubnub_qt_gui_sample.h"
 
@@ -61,7 +62,12 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     pubnub_qt_gui_sample sample;
 
-    sample.show();
+    QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
+    app.setFont(QFont("DejaVu Sans"));
+
+//    sample.show();
+    QDeclarativeView *qmlView = new QDeclarativeView;
+    qmlView->setSource(QUrl("qrc:/qml/dashboard.qml"));
 
     return app.exec();
 }

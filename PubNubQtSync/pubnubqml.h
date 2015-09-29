@@ -10,7 +10,7 @@ public:
     explicit PubNubQML(QObject *parent = 0);
 
 signals:
-    messageReceived(const QString &subject);
+    void messageReceived(const QString &subject);
 public slots:
 };
 
