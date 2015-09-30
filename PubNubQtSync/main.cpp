@@ -47,6 +47,7 @@
 #include <QDebug>
 #include <QQmlComponent>
 #include <QQuickView>
+//#include <QtDeclarative/QDeclarativeView>
 
 #include "pubnub_qt_gui_sample.h"
 //#include "pubnubqml.h"
@@ -80,8 +81,8 @@ int main(int argc, char *argv[])
 //    sample.execute();
 //    pubnub_qt_gui_sample sample;
 
-//    QQuickView view;
-//    view.setSource(QUrl::fromLocalFile("dashboard.qml"));
+    QQuickView view;
+    view.setSource(QUrl::fromLocalFile("qrc:qml/dashboard.qml"));
 //    view.show();
 //    QObject *object = view.rootObject();
 
@@ -90,5 +91,17 @@ int main(int argc, char *argv[])
 //    view->show();
 //    view.show();
 
+//    QApplication app(argc, argv);
+
+//    QDeclarativeView view;
+
+//        ApplicationData data;
+//        view.rootContext()->setContextProperty("applicationData", &data);
+
+//    view.setSource(QUrl::fromLocalFile(":/qml/dashboard.qml"));
+    view.show();
+
     return app.exec();
+
+//    return app.exec();
 }

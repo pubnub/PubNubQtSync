@@ -10,11 +10,11 @@ SOURCES += main.cpp pubnub_qt.cpp pubnub_qt_gui_sample.cpp $$PWD/../c-core/core/
 INCLUDEPATH += $$PWD/../c-core/core
 DEPENDPATH += $$PWD/../c-core/core
 
-#RESOURCES += \
-#    dashboard.qrc
+RESOURCES += \
+    dashboard.qrc
 
 OTHER_FILES += \
-    dashboard.qml
+    qml/dashboard.qml
 
 #OTHER_FILES += \
 #    qml/dashboard.qml \
