@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 //    pubnub_qt_gui_sample sample;
 
     QQuickView view;
-    view.setSource(QUrl::fromLocalFile("qrc:qml/dashboard.qml"));
+    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
 //    view.show();
 //    QObject *object = view.rootObject();
 

@@ -65,9 +65,9 @@ import QtQuick.Extras 1.4
 //        height: Math.min(root.width, root.height)
         height: 600
         visible: true
-        color: "#161616"
-        title: "Qt Quick Extras Demo"
-//        anchors.centerIn: parent
+//        color: "#161616"
+//        title: "Qt Quick Extras Demo"
+        anchors.centerIn: parent
 
         CircularGauge {
             id: speedometer
@@ -81,8 +81,8 @@ import QtQuick.Extras 1.4
             // don't want to extra space on the left and right of our gauges,
             // because they're laid out horizontally, and that would create
             // large horizontal gaps between gauges on wide screens.
-            width: height
-            height: container.height * 0.5
+            width: 800
+            height: 400
 
             style: DashboardGaugeStyle {}
         }

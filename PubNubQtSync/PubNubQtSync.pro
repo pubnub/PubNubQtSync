@@ -13,8 +13,8 @@ DEPENDPATH += $$PWD/../c-core/core
 RESOURCES += \
     dashboard.qrc
 
-OTHER_FILES += \
-    qml/dashboard.qml
+#OTHER_FILES += \
+#    qml/dashboard.qml
 
 #OTHER_FILES += \
 #    qml/dashboard.qml \
