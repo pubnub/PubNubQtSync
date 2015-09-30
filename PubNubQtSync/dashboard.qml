@@ -44,14 +44,14 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 
-Window {
-    id: root
-    visible: true
-    width: 1024
-    height: 600
+//Window {
+//    id: root
+//    visible: true
+//    width: 1024
+//    height: 600
 
-    color: "#161616"
-    title: "Qt Quick Extras Demo"
+//    color: "#161616"
+//    title: "Qt Quick Extras Demo"
 
 //    ValueSource {
 //        id: valueSource
@@ -60,10 +60,14 @@ Window {
     // Dashboards are typically in a landscape orientation, so we need to ensure
     // our height is never greater than our width.
     Item {
-        id: container
-        width: root.width
-        height: Math.min(root.width, root.height)
-        anchors.centerIn: parent
+        id: root
+        width: 1024
+//        height: Math.min(root.width, root.height)
+        height: 600
+        visible: true
+        color: "#161616"
+        title: "Qt Quick Extras Demo"
+//        anchors.centerIn: parent
 
         CircularGauge {
             id: speedometer
@@ -83,4 +87,4 @@ Window {
             style: DashboardGaugeStyle {}
         }
     }
-}
+//}

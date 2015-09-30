@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-
+#include <QApplication>
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtGui/QFont>
@@ -46,20 +46,31 @@
 #include <QApplication>
 #include <QDebug>
 #include <QQmlComponent>
+#include <QQuickView>
 
 #include "pubnub_qt_gui_sample.h"
 //#include "pubnubqml.h"
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+
+    QApplication app(argc, argv);
+
+//    QQuickView view(QUrl::fromLocalFile("dashboard.qml"));
+    qDebug() << "Created view";
+//    QObject *item = view.rootObject();
+
+
+//         view.show();
+//         return app.exec();
+//    QGuiApplication app(argc, argv);
     qDebug() << "Debug Message";
 
     QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
     app.setFont(QFont("DejaVu Sans"));
 
-    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
-    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
+//    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
+//    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
 
 //    QApplication app(argc, argv);
 //    pubnub_qt_gui_sample sample;
@@ -67,7 +78,17 @@ int main(int argc, char *argv[])
 //    sample.show();
 //    PubNubQML sample;
 //    sample.execute();
-    pubnub_qt_gui_sample sample;
+//    pubnub_qt_gui_sample sample;
+
+//    QQuickView view;
+//    view.setSource(QUrl::fromLocalFile("dashboard.qml"));
+//    view.show();
+//    QObject *object = view.rootObject();
+
+//    QQuickView *view = new QQuickView;
+//    view->setSource(QUrl::fromLocalFile("dashboard.qml"));
+//    view->show();
+//    view.show();
 
     return app.exec();
 }
