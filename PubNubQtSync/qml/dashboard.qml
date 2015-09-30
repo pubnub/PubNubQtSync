@@ -44,55 +44,144 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 
-//Window {
-//    id: root
-//    visible: true
-//    width: 1024
-//    height: 600
+Window {
+    id: root
+    visible: true
+    width: 1024
+    height: 600
 
-//    color: "#161616"
-//    title: "Qt Quick Extras Demo"
+    color: "#161616"
+    title: "Qt Quick Extras Demo"
 
-//    ValueSource {
-//        id: valueSource
-//    }
+    ValueSource {
+        id: valueSource
+    }
 
     // Dashboards are typically in a landscape orientation, so we need to ensure
     // our height is never greater than our width.
     Item {
-        id: root
-        width: 1024
-//        height: Math.min(root.width, root.height)
-        height: 600
-        visible: true
-//        color: "#161616"
-//        title: "Qt Quick Extras Demo"
+        id: container
+        width: root.width
+        height: Math.min(root.width, root.height)
         anchors.centerIn: parent
 
-        function updateSpeedometer(newValue) {
-            speedometer.value = newValue
-        }
+        Row {
+            id: gaugeRow
+            spacing: container.width * 0.02
+            anchors.centerIn: parent
 
-        CircularGauge {
-            objectName: "speedometer"
-            id: speedometer
-//            value: valueSource.kph
-            value: 1
-            anchors.verticalCenter: parent.verticalCenter
-            maximumValue: 280
-            // We set the width to the height, because the height will always be
-            // the more limited factor. Also, all circular controls letterbox
-            // their contents to ensure that they remain circular. However, we
-            // don't want to extra space on the left and right of our gauges,
-            // because they're laid out horizontally, and that would create
-            // large horizontal gaps between gauges on wide screens.
-            width: 800
-            height: 400
+            Item {
+                width: height
+                height: container.height * 0.25 - gaugeRow.spacing
+                anchors.verticalCenter: parent.verticalCenter
 
-            style: DashboardGaugeStyle {}
-        }
-        Connections {
-            target: pubnub
+                CircularGauge {
+                    id: fuelGauge
+                    value: valueSource.fuel
+                    maximumValue: 1
+                    y: parent.height / 2 - height / 2 - container.height * 0.01
+                    width: parent.width
+                    height: parent.height * 0.7
+                    anchors.right: speedometer.left
+
+                    style: IconGaugeStyle {
+                        id: fuelGaugeStyle
+
+                        icon: "qrc:/images/fuel-icon.png"
+                        minWarningColor: Qt.rgba(0.5, 0, 0, 1)
+
+                        tickmarkLabel: Text {
+                            color: "white"
+                            visible: styleData.value === 0 || styleData.value === 1
+                            font.pixelSize: fuelGaugeStyle.toPixels(0.225)
+                            text: styleData.value === 0 ? "E" : (styleData.value === 1 ? "F" : "")
+                        }
+                    }
+                }
+
+            CircularGauge {
+                id: speedometer
+                value: valueSource.kph
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                maximumValue: 280
+                // We set the width to the height, because the height will always be
+                // the more limited factor. Also, all circular controls letterbox
+                // their contents to ensure that they remain circular. However, we
+                // don't want to extra space on the left and right of our gauges,
+                // because they're laid out horizontally, and that would create
+                // large horizontal gaps between gauges on wide screens.
+                width: height
+                height: container.height * 0.5
+
+                style: DashboardGaugeStyle {}
+            }
+
+            CircularGauge {
+                id: tachometer
+                width: height
+                height: container.height * 0.25 - gaugeRow.spacing
+                value: valueSource.rpm
+                maximumValue: 8
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: speedometer.right
+
+                style: TachometerStyle {}
+            }
         }
     }
-//}
+    }
+}
+
+////Window {
+////    id: root
+////    visible: true
+////    width: 1024
+////    height: 600
+
+////    color: "#161616"
+////    title: "Qt Quick Extras Demo"
+
+////    ValueSource {
+////        id: valueSource
+////    }
+
+//    // Dashboards are typically in a landscape orientation, so we need to ensure
+//    // our height is never greater than our width.
+//    Item {
+//        id: root
+//        width: 1024
+////        height: Math.min(root.width, root.height)
+//        height: 600
+//        visible: true
+////        color: "#161616"
+////        title: "Qt Quick Extras Demo"
+//        anchors.centerIn: parent
+
+//        function updateSpeedometer(newValue) {
+//            speedometer.value = newValue
+//        }
+
+//        CircularGauge {
+//            objectName: "speedometer"
+//            id: speedometer
+////            value: valueSource.kph
+//            value: 1
+//            anchors.verticalCenter: parent.verticalCenter
+//            maximumValue: 280
+//            // We set the width to the height, because the height will always be
+//            // the more limited factor. Also, all circular controls letterbox
+//            // their contents to ensure that they remain circular. However, we
+//            // don't want to extra space on the left and right of our gauges,
+//            // because they're laid out horizontally, and that would create
+//            // large horizontal gaps between gauges on wide screens.
+//            width: 800
+//            height: 400
+
+//            style: DashboardGaugeStyle {}
+//        }
+//        Connections {
+//            target: pubnub
+//        }
+//    }
+////}

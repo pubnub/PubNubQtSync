@@ -56,7 +56,8 @@
 int main(int argc, char *argv[])
 {
 
-    QApplication app(argc, argv);
+//    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
 //    QQuickView view(QUrl::fromLocalFile("dashboard.qml"));
     qDebug() << "Created view";
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
 
 //         view.show();
 //         return app.exec();
-//    QGuiApplication app(argc, argv);
+
     qDebug() << "Debug Message";
 
     QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
@@ -82,10 +83,30 @@ int main(int argc, char *argv[])
 //    sample.execute();
     pubnub_qt_gui_sample sample;
 
-    QQuickView view;
-    view.rootContext()->setContextProperty("pubnub", &sample);
-    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
-    sample.mainView = &view;
+//    QQuickView view;
+//    view.rootContext()->setContextProperty("pubnub", &sample);
+//    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
+//    sample.mainView = &view;
+
+    QQmlEngine engine;
+    QQmlComponent component(&engine);
+    component.loadUrl(QUrl("qrc:///qml/dashboard.qml"));
+    if ( component.isReady() )
+    {
+        qDebug() << "about to create";
+        QObject *object = component.create();
+        qDebug() << "created!";
+        QQuickWindow *window = qobject_cast<QQuickWindow*>(object);
+        qDebug() << object;
+        qDebug() << object->objectName();
+        qDebug() << object->children();
+        sample.mainWindow = window;
+    }
+        else {
+            qDebug() << component.errorString();
+    }
+
+
 
 //    QObject *object = view.rootObject();
 
@@ -102,7 +123,7 @@ int main(int argc, char *argv[])
 //        view.rootContext()->setContextProperty("applicationData", &data);
 
 //    view.setSource(QUrl::fromLocalFile(":/qml/dashboard.qml"));
-    view.show();
+//    view.show();
 
     return app.exec();
 

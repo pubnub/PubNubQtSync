@@ -8,6 +8,7 @@ QT_BEGIN_NAMESPACE
 //class QLineEdit;
 //class QTextEdit;
 class QQuickView;
+class QQuickWindow;
 QT_END_NAMESPACE
 
 
@@ -18,6 +19,7 @@ class pubnub_qt_gui_sample : public QObject {
 public:
     pubnub_qt_gui_sample();
     QQuickView *mainView;
+    QQuickWindow *mainWindow;
     
 private slots:
     void onPublish(pubnub_res result);

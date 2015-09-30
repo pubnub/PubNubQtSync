@@ -7,6 +7,7 @@ extern "C" {
 
 //#include <QApplication>
 #include <QQuickView>
+#include <QQuickWindow>
 #include <QQuickItem>
 #include <QMetaObject>
 #include <QQmlProperty>
@@ -88,28 +89,38 @@ void pubnub_qt_gui_sample::onSubscribe(pubnub_res result)
         QList<QString> msg = d_pb_subscribe->get_all();
         for (int i = 0; i < msg.size(); ++i) {
             qDebug() << "subscribe message " + msg[i] + '\n';
-            if (mainView) {
-                qDebug() << "has mainView";
-                qDebug() << mainView->children();
-                qDebug() << mainView->source();
-                qDebug() << mainView->rootObject();
-                QQuickItem *item = mainView->rootObject();
-                qDebug() << "item is ";
-                qDebug() << item;
-                mainView->rootObject()->setProperty("value", 160);
-                qDebug() << "property value:" << QQmlProperty::read(item, "height").toInt();
-                QObject *speedometer = item->findChild<QObject*>("speedometer", Qt::FindChildrenRecursively);
-                if (speedometer) {
-                    qDebug() << "found speedometer!";
-                    speedometer->setProperty("value", 160);
-                }
-//                QQuickItem *speedometer = mainView->findChild<QQuickItem*>("speedometer", Qt::FindChildrenRecursively);
+//            if (mainView) {
+//                qDebug() << "has mainView";
+//                qDebug() << mainView->children();
+//                qDebug() << mainView->source();
+//                qDebug() << mainView->rootObject();
+//                QQuickItem *item = mainView->rootObject();
+//                qDebug() << "item is ";
+//                qDebug() << item;
+//                mainView->rootObject()->setProperty("value", 160);
+//                qDebug() << "property value:" << QQmlProperty::read(item, "height").toInt();
+//                QObject *speedometer = item->findChild<QObject*>("speedometer", Qt::FindChildrenRecursively);
 //                if (speedometer) {
-//                    qDebug() << "has speedometer";
+//                    qDebug() << "found speedometer!";
 //                    speedometer->setProperty("value", 160);
 //                }
+////                QQuickItem *speedometer = mainView->findChild<QQuickItem*>("speedometer", Qt::FindChildrenRecursively);
+////                if (speedometer) {
+////                    qDebug() << "has speedometer";
+////                    speedometer->setProperty("value", 160);
+////                }
 
 
+//            }
+            if (mainWindow) {
+                qDebug() << "has mainWindow";
+                qDebug() << mainWindow->children();
+                QQuickItem *valueSource = mainWindow->findChild<QQuickItem*>("valueSource", Qt::FindChildrenRecursively);
+                if (valueSource) {
+                    qDebug() << "has valueSource!";
+                    valueSource->setProperty("kph", 160);
+                    valueSource->setProperty("rpm", 4.5);
+                }
             }
             
 //            d_console->insertPlainText(msg[i] + '\n');
