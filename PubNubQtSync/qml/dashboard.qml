@@ -69,7 +69,12 @@ import QtQuick.Extras 1.4
 //        title: "Qt Quick Extras Demo"
         anchors.centerIn: parent
 
+        function updateSpeedometer(newValue) {
+            speedometer.value = newValue
+        }
+
         CircularGauge {
+            objectName: "speedometer"
             id: speedometer
 //            value: valueSource.kph
             value: 1
@@ -85,6 +90,9 @@ import QtQuick.Extras 1.4
             height: 400
 
             style: DashboardGaugeStyle {}
+        }
+        Connections {
+            target: pubnub
         }
     }
 //}

@@ -6,6 +6,13 @@ extern "C" {
 }
 
 //#include <QApplication>
+#include <QQuickView>
+#include <QQuickItem>
+#include <QMetaObject>
+#include <QQmlProperty>
+//#include <QQmlContext>
+//#include <QtGui/QFont>
+//#include <QtGui/QFontDatabase>
 //#include <QLineEdit>
 //#include <QTextEdit>
 //#include <QLabel>
@@ -81,6 +88,30 @@ void pubnub_qt_gui_sample::onSubscribe(pubnub_res result)
         QList<QString> msg = d_pb_subscribe->get_all();
         for (int i = 0; i < msg.size(); ++i) {
             qDebug() << "subscribe message " + msg[i] + '\n';
+            if (mainView) {
+                qDebug() << "has mainView";
+                qDebug() << mainView->children();
+                qDebug() << mainView->source();
+                qDebug() << mainView->rootObject();
+                QQuickItem *item = mainView->rootObject();
+                qDebug() << "item is ";
+                qDebug() << item;
+                mainView->rootObject()->setProperty("value", 160);
+                qDebug() << "property value:" << QQmlProperty::read(item, "height").toInt();
+                QObject *speedometer = item->findChild<QObject*>("speedometer", Qt::FindChildrenRecursively);
+                if (speedometer) {
+                    qDebug() << "found speedometer!";
+                    speedometer->setProperty("value", 160);
+                }
+//                QQuickItem *speedometer = mainView->findChild<QQuickItem*>("speedometer", Qt::FindChildrenRecursively);
+//                if (speedometer) {
+//                    qDebug() << "has speedometer";
+//                    speedometer->setProperty("value", 160);
+//                }
+
+
+            }
+            
 //            d_console->insertPlainText(msg[i] + '\n');
         }
     }
@@ -130,11 +161,64 @@ void pubnub_qt_gui_sample::messageChanged()
 
 //int main(int argc, char *argv[])
 //{
+////    QApplication app(argc, argv);
+////    pubnub_qt_gui_sample sample;
+    
+////    sample.show();
+    
+////    return app.exec();
+
 //    QApplication app(argc, argv);
+
+////    QQuickView view(QUrl::fromLocalFile("dashboard.qml"));
+//    qDebug() << "Created view";
+////    QObject *item = view.rootObject();
+
+
+////         view.show();
+////         return app.exec();
+////    QGuiApplication app(argc, argv);
+//    qDebug() << "Debug Message";
+
+//    QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
+//    app.setFont(QFont("DejaVu Sans"));
+
+////    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
+////    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
+
+////    QApplication app(argc, argv);
+////    pubnub_qt_gui_sample sample;
+
+////    sample.show();
+////    PubNubQML sample;
+////    sample.execute();
 //    pubnub_qt_gui_sample sample;
-    
-//    sample.show();
-    
+
+////    QQuickView view;
+////    view.rootContext()->setContextProperty("pubnub", &sample);
+////    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
+//    mainView = new QQuickView();
+//    mainView.setSource(QUrl("qrc:///qml/dashboard.qml"));
+
+////    QObject *object = view.rootObject();
+
+////    QQuickView *view = new QQuickView;
+////    view->setSource(QUrl::fromLocalFile("dashboard.qml"));
+////    view->show();
+////    view.show();
+
+////    QApplication app(argc, argv);
+
+////    QDeclarativeView view;
+
+////        ApplicationData data;
+////        view.rootContext()->setContextProperty("applicationData", &data);
+
+////    view.setSource(QUrl::fromLocalFile(":/qml/dashboard.qml"));
+//    mainView.show();
+
+//    return app.exec();
+
 //    return app.exec();
 //}
 

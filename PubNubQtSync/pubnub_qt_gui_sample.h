@@ -4,10 +4,11 @@
 #include <QObject>
 
 
-//QT_BEGIN_NAMESPACE
+QT_BEGIN_NAMESPACE
 //class QLineEdit;
 //class QTextEdit;
-//QT_END_NAMESPACE
+class QQuickView;
+QT_END_NAMESPACE
 
 
 
@@ -16,6 +17,7 @@ class pubnub_qt_gui_sample : public QObject {
   
 public:
     pubnub_qt_gui_sample();
+    QQuickView *mainView;
     
 private slots:
     void onPublish(pubnub_res result);
@@ -36,6 +38,7 @@ private:
 
     QScopedPointer<pubnub_qt> d_pb_publish;
     QScopedPointer<pubnub_qt> d_pb_subscribe;
+
 
     void resetPubnub();
 };
