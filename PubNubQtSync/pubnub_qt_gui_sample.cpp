@@ -19,7 +19,7 @@ void pubnub_qt_gui_sample::resetPubnub()
 
     d_pb_subscribe.reset(new pubnub_qt("demo-36", "demo-36"));
     connect(d_pb_subscribe.data(), SIGNAL(outcome(pubnub_res)), this, SLOT(onSubscribe(pubnub_res)));
-    d_pb_subscribe->subscribe("qt");
+    d_pb_subscribe->subscribe("qt-data-simulator");
 }
 
 
@@ -110,7 +110,7 @@ void pubnub_qt_gui_sample::onSubscribe(pubnub_res result)
 //    QScrollBar *bar = d_console->verticalScrollBar();
 //    bar->setValue(bar->maximum());
 
-    result = d_pb_subscribe->subscribe("qt");
+    result = d_pb_subscribe->subscribe("qt-data-simulator");
     if (result != PNR_STARTED) {
         qDebug() << "subscribe failed";
 //        d_console->insertPlainText(QString("Subscribe failed, result: '") + pubnub_res_2_string(result) + "'\n");
