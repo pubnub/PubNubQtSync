@@ -75,6 +75,80 @@ Window {
                 height: container.height * 0.25 - gaugeRow.spacing
                 anchors.verticalCenter: parent.verticalCenter
 
+//                Row {
+//                    id: gearsLabel
+//                    spacing: 2
+//                    Rectangle { color: "red"; width: 50; height: 50 }
+//                    Rectangle { color: "green"; width: 20; height: 50 }
+//                    Rectangle { color: "blue"; width: 50; height: 20 }
+//                }
+
+//                ListView {
+//                    id: gearsListView
+//                    anchors.right: speedometer.left
+//                    anchors.top: parent.bottom
+//                    model: gearsModel
+//                    delegate: Component {
+//                        Row {
+//                            Text {
+//                                text: gear
+//                                font.family: "Helvetica"
+//                                font.pointSize: 10
+//                                color: "red"
+//                            }
+//                        }
+//                    }
+//                    spacing: 1
+//                }
+
+//                ListView {
+////                    width: 180; height: 200
+//                    anchors.right: speedometer.left
+//                    anchors.top: parent.bottom
+//                    spacing: 1
+//                    width: gearsModel.count*10
+//                    height: 10
+//                    orientation: ListView.Horizontal
+
+//                    Component {
+//                        id: contactsDelegate
+//                        Rectangle {
+//                            id: wrapper
+//                            width: parent.width/gearsModel.count
+//                            height: contactInfo.height
+//                            color: ListView.isCurrentItem ? "green" : "red"
+//                            Text {
+//                                id: contactInfo
+//                                text: gear
+//                                color: wrapper.ListView.isCurrentItem ? "red" : "green"
+//                            }
+//                        }
+//                    }
+
+//                    model: gearsModel
+//                    delegate: contactsDelegate
+////                    focus: true
+//                }
+
+                ListModel {
+                    id: gearsModel
+                    ListElement {
+                        gear: "P"
+                    }
+                    ListElement {
+                        gear: "R"
+                    }
+                    ListElement {
+                        gear: "N"
+                    }
+                    ListElement {
+                        gear: "D"
+                    }
+                    ListElement {
+                        gear: "L"
+                    }
+                }
+
                 CircularGauge {
                     id: fuelGauge
                     value: valueSource.fuel
