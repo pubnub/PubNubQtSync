@@ -5,9 +5,6 @@
 
 
 QT_BEGIN_NAMESPACE
-//class QLineEdit;
-//class QTextEdit;
-class QQuickView;
 class QQuickWindow;
 QT_END_NAMESPACE
 
@@ -18,7 +15,6 @@ class pubnub_qt_gui_sample : public QObject {
   
 public:
     pubnub_qt_gui_sample();
-    QQuickView *mainView;
     QQuickWindow *mainWindow;
     
 private slots:
@@ -31,12 +27,6 @@ private slots:
     void channelChanged();
             
 private:
-//    QLineEdit *d_channel;
-//    QLineEdit *d_pubkey;
-//    QLineEdit *d_keysub;
-
-//    QLineEdit *d_message;
-//    QTextEdit *d_console;
 
     QScopedPointer<pubnub_qt> d_pb_publish;
     QScopedPointer<pubnub_qt> d_pb_subscribe;

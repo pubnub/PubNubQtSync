@@ -38,55 +38,31 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
 #include <QtGui/QGuiApplication>
-#include <QtQml/QQmlApplicationEngine>
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
-#include <QApplication>
 #include <QDebug>
 #include <QQmlComponent>
-#include <QQuickView>
-#include <QQmlContext>
-////#include <QtDeclarative/QDeclarativeView>
+#include <QQmlEngine>
+#include <QQuickWindow>
 
 #include "pubnub_qt_gui_sample.h"
-//#include "pubnubqml.h"
 
 int main(int argc, char *argv[])
 {
-
-//    QApplication app(argc, argv);
     QGuiApplication app(argc, argv);
 
-//    QQuickView view(QUrl::fromLocalFile("dashboard.qml"));
     qDebug() << "Created view";
-//    QObject *item = view.rootObject();
 
-
-//         view.show();
-//         return app.exec();
 
     qDebug() << "Debug Message";
 
     QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
     app.setFont(QFont("DejaVu Sans"));
 
-//    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
-//    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
 
-//    QApplication app(argc, argv);
-//    pubnub_qt_gui_sample sample;
-
-//    sample.show();
-//    PubNubQML sample;
-//    sample.execute();
     pubnub_qt_gui_sample sample;
 
-//    QQuickView view;
-//    view.rootContext()->setContextProperty("pubnub", &sample);
-//    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
-//    sample.mainView = &view;
 
     QQmlEngine engine;
     QQmlComponent component(&engine);
@@ -106,26 +82,6 @@ int main(int argc, char *argv[])
             qDebug() << component.errorString();
     }
 
-
-
-//    QObject *object = view.rootObject();
-
-//    QQuickView *view = new QQuickView;
-//    view->setSource(QUrl::fromLocalFile("dashboard.qml"));
-//    view->show();
-//    view.show();
-
-//    QApplication app(argc, argv);
-
-//    QDeclarativeView view;
-
-//        ApplicationData data;
-//        view.rootContext()->setContextProperty("applicationData", &data);
-
-//    view.setSource(QUrl::fromLocalFile(":/qml/dashboard.qml"));
-//    view.show();
-
     return app.exec();
 
-//    return app.exec();
 }

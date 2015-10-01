@@ -5,21 +5,12 @@ extern "C" {
 #include "pubnub_helper.h"
 }
 
-//#include <QApplication>
-#include <QQuickView>
 #include <QQuickWindow>
 #include <QQuickItem>
 #include <QMetaObject>
 #include <QQmlProperty>
-//#include <QQmlContext>
-//#include <QtGui/QFont>
-//#include <QtGui/QFontDatabase>
-//#include <QLineEdit>
-//#include <QTextEdit>
-//#include <QLabel>
-//#include <QVBoxLayout>
-//#include <QScrollBar>
-
+#include <QJsonDocument>
+#include <QJsonObject>
 
 void pubnub_qt_gui_sample::resetPubnub()
 {
@@ -34,37 +25,8 @@ void pubnub_qt_gui_sample::resetPubnub()
 
 pubnub_qt_gui_sample::pubnub_qt_gui_sample()
 {
-//    d_pubkey = new QLineEdit("demo");
-//    connect(d_pubkey, SIGNAL(returnPressed()), this, SLOT(pubkeyChanged()));
-//    d_keysub = new QLineEdit("demo");
-//    connect(d_keysub, SIGNAL(returnPressed()), this, SLOT(keysubChanged()));
-//    d_channel = new QLineEdit("hello_world");
-//    connect(d_channel, SIGNAL(returnPressed()), this, SLOT(channelChanged()));
-
-//    d_message = new QLineEdit("{\"text\": \"Pubnub-Qt\"}");
-//    connect(d_message, SIGNAL(returnPressed()), this, SLOT(messageChanged()));
-
-//    d_console = new QTextEdit;
-//    d_console->setFocusPolicy(Qt::NoFocus);
-//    d_console->setReadOnly(true);
 
     resetPubnub();
- 
-//    QVBoxLayout *layout = new QVBoxLayout;
-//    layout->addWidget(new QLabel("Publish key"));
-//    layout->addWidget(d_pubkey);
-//    layout->addWidget(new QLabel("Subscribe key"));
-//    layout->addWidget(d_keysub);
-//    layout->addWidget(new QLabel("Channel"));
-//    layout->addWidget(d_channel);
-//    layout->addWidget(new QLabel("Message"));
-//    layout->addWidget(d_message);
-//    layout->addWidget(new QLabel("Console"));
-//    layout->addWidget(d_console);
-
-//    setLayout(layout);
-
-//    setWindowTitle("Pubnub Qt Debug Console");
 }
 
 
@@ -87,8 +49,16 @@ void pubnub_qt_gui_sample::onSubscribe(pubnub_res result)
     }
     else {
         QList<QString> msg = d_pb_subscribe->get_all();
+        qDebug() << "msg";
+        qDebug() << msg;
         for (int i = 0; i < msg.size(); ++i) {
             qDebug() << "subscribe message " + msg[i] + '\n';
+            QJsonDocument json = QJsonDocument::fromJson(msg[i].toUtf8());
+            qDebug() << json;
+            QJsonObject object = json.object();
+            qDebug() << "object";
+            qDebug() << object;
+//            qDebug() << object.value("text");
 //            if (mainView) {
 //                qDebug() << "has mainView";
 //                qDebug() << mainView->children();
@@ -118,8 +88,18 @@ void pubnub_qt_gui_sample::onSubscribe(pubnub_res result)
                 QQuickItem *valueSource = mainWindow->findChild<QQuickItem*>("valueSource", Qt::FindChildrenRecursively);
                 if (valueSource) {
                     qDebug() << "has valueSource!";
-                    valueSource->setProperty("kph", 160);
-                    valueSource->setProperty("rpm", 4.5);
+//                    valueSource->setProperty("kph", 160);
+//                    valueSource->setProperty("rpm", 4.5);
+//                    valueSource->setProperty("fuel", 0.5);
+                    if (object.contains("kph")) {
+                        valueSource->setProperty("kph", object.value("kph").toInt());
+                    }
+                    if (object.contains("rpm")) {
+                        valueSource->setProperty("rpm", object.value("rpm").toDouble());
+                    }
+                    if (object.contains("fuel")) {
+                        valueSource->setProperty("fuel", object.value("fuel").toDouble());
+                    }
                 }
             }
             
@@ -168,68 +148,4 @@ void pubnub_qt_gui_sample::messageChanged()
 //        d_console->insertPlainText(QString("Publish failed, result: '") + pubnub_res_2_string(result) + "'\n");
     }
 }
-
-
-//int main(int argc, char *argv[])
-//{
-////    QApplication app(argc, argv);
-////    pubnub_qt_gui_sample sample;
-    
-////    sample.show();
-    
-////    return app.exec();
-
-//    QApplication app(argc, argv);
-
-////    QQuickView view(QUrl::fromLocalFile("dashboard.qml"));
-//    qDebug() << "Created view";
-////    QObject *item = view.rootObject();
-
-
-////         view.show();
-////         return app.exec();
-////    QGuiApplication app(argc, argv);
-//    qDebug() << "Debug Message";
-
-//    QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
-//    app.setFont(QFont("DejaVu Sans"));
-
-////    QQmlApplicationEngine engine(QUrl("qrc:/qml/dashboard.qml"));
-////    QQmlComponent component(&engine, QUrl("qrc:/qml/dashboard.qml"));
-
-////    QApplication app(argc, argv);
-////    pubnub_qt_gui_sample sample;
-
-////    sample.show();
-////    PubNubQML sample;
-////    sample.execute();
-//    pubnub_qt_gui_sample sample;
-
-////    QQuickView view;
-////    view.rootContext()->setContextProperty("pubnub", &sample);
-////    view.setSource(QUrl("qrc:///qml/dashboard.qml"));
-//    mainView = new QQuickView();
-//    mainView.setSource(QUrl("qrc:///qml/dashboard.qml"));
-
-////    QObject *object = view.rootObject();
-
-////    QQuickView *view = new QQuickView;
-////    view->setSource(QUrl::fromLocalFile("dashboard.qml"));
-////    view->show();
-////    view.show();
-
-////    QApplication app(argc, argv);
-
-////    QDeclarativeView view;
-
-////        ApplicationData data;
-////        view.rootContext()->setContextProperty("applicationData", &data);
-
-////    view.setSource(QUrl::fromLocalFile(":/qml/dashboard.qml"));
-//    mainView.show();
-
-//    return app.exec();
-
-//    return app.exec();
-//}
 
