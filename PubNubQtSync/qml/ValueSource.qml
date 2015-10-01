@@ -46,8 +46,9 @@ Item {
     property real kph: 0
     property real rpm: 0
     property real fuel: 0.00
-    property string gear: "P"
-    property bool start: true
+    property variant gears: ["P", "R", "N", "D", "L"]
+    property string currentGear: "P"
+//    property bool start: true
 
     Behavior on kph {
         NumberAnimation {

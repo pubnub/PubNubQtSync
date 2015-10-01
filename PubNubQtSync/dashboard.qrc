@@ -7,7 +7,6 @@
         <file>qml/DashboardGaugeStyle.qml</file>
         <file>qml/IconGaugeStyle.qml</file>
         <file>qml/TachometerStyle.qml</file>
-        <file>qml/TurnIndicator.qml</file>
         <file>qml/ValueSource.qml</file>
     </qresource>
 </RCC>

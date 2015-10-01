@@ -83,6 +83,7 @@ Window {
                     width: parent.width
                     height: parent.height * 0.7
                     anchors.right: speedometer.left
+                    anchors.top: parent.top
 
                     style: IconGaugeStyle {
                         id: fuelGaugeStyle
@@ -99,37 +100,37 @@ Window {
                     }
                 }
 
-            CircularGauge {
-                id: speedometer
-                value: valueSource.kph
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                maximumValue: 280
-                // We set the width to the height, because the height will always be
-                // the more limited factor. Also, all circular controls letterbox
-                // their contents to ensure that they remain circular. However, we
-                // don't want to extra space on the left and right of our gauges,
-                // because they're laid out horizontally, and that would create
-                // large horizontal gaps between gauges on wide screens.
-                width: height
-                height: container.height * 0.5
+                CircularGauge {
+                    id: speedometer
+                    value: valueSource.kph
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    maximumValue: 280
+                    // We set the width to the height, because the height will always be
+                    // the more limited factor. Also, all circular controls letterbox
+                    // their contents to ensure that they remain circular. However, we
+                    // don't want to extra space on the left and right of our gauges,
+                    // because they're laid out horizontally, and that would create
+                    // large horizontal gaps between gauges on wide screens.
+                    width: height
+                    height: container.height * 0.5
 
-                style: DashboardGaugeStyle {}
-            }
+                    style: DashboardGaugeStyle {}
+                }
 
-            CircularGauge {
-                id: tachometer
-                width: height
-                height: container.height * 0.25 - gaugeRow.spacing
-                value: valueSource.rpm
-                maximumValue: 8
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: speedometer.right
+                CircularGauge {
+                    id: tachometer
+                    width: height
+                    height: container.height * 0.25 - gaugeRow.spacing
+                    value: valueSource.rpm
+                    maximumValue: 8
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: speedometer.right
 
-                style: TachometerStyle {}
+                    style: TachometerStyle {}
+                }
             }
         }
-    }
     }
 }
 
