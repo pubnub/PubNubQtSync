@@ -44,35 +44,31 @@ Item {
     id: valueSource
     objectName: "valueSource"
     property real kph: 0
-    property real rpm: 1
-    property real fuel: 0.85
-//    property string gear: {
-//        var g;
-//        if (kph == 0) {
-//            return "P";
-//        }
-//        if (kph < 30) {
-//            return "1";
-//        }
-//        if (kph < 50) {
-//            return "2";
-//        }
-//        if (kph < 80) {
-//            return "3";
-//        }
-//        if (kph < 120) {
-//            return "4";
-//        }
-//        if (kph < 160) {
-//            return "5";
-//        }
-//    }
-    property real temperature: 0.6
+    property real rpm: 0
+    property real fuel: 0.00
+    property string gear: "P"
     property bool start: true
 
-//    function randomDirection() {
-//        return Math.random() > 0.5 ? Qt.LeftArrow : Qt.RightArrow;
-//    }
+    Behavior on kph {
+        NumberAnimation {
+            easing.type: Easing.InOutSine
+            duration: 700
+        }
+    }
+
+    Behavior on rpm {
+        NumberAnimation {
+            easing.type: Easing.InOutSine
+            duration: 700
+        }
+    }
+
+    Behavior on fuel {
+        NumberAnimation {
+            easing.type: Easing.InOutSine
+            duration: 700
+        }
+    }
 
 
 }
