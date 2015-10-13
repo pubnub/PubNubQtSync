@@ -52,10 +52,6 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    qDebug() << "Created view";
-
-
-    qDebug() << "Debug Message";
 
     QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
     app.setFont(QFont("DejaVu Sans"));
@@ -69,13 +65,8 @@ int main(int argc, char *argv[])
     component.loadUrl(QUrl("qrc:///qml/dashboard.qml"));
     if ( component.isReady() )
     {
-        qDebug() << "about to create";
         QObject *object = component.create();
-        qDebug() << "created!";
         QQuickWindow *window = qobject_cast<QQuickWindow*>(object);
-        qDebug() << object;
-        qDebug() << object->objectName();
-        qDebug() << object->children();
         sample.mainWindow = window;
     }
         else {
