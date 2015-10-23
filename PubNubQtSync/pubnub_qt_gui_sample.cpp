@@ -14,10 +14,11 @@ extern "C" {
 
 void pubnub_qt_gui_sample::resetPubnub()
 {
-    // sign up for keys at http://pubnub.com
+    // sign up for keys at https://admin.pubnub.com/#/login
     d_pb_publish.reset(new pubnub_qt("<pub-key here>", "<sub-key here>"));
     connect(d_pb_publish.data(), SIGNAL(outcome(pubnub_res)), this, SLOT(onPublish(pubnub_res)));
 
+    // sign up for keys at https://admin.pubnub.com/#/login
     d_pb_subscribe.reset(new pubnub_qt("<pub-key here>", "<sub-key here>"));
     connect(d_pb_subscribe.data(), SIGNAL(outcome(pubnub_res)), this, SLOT(onSubscribe(pubnub_res)));
     d_pb_subscribe->subscribe("qt-data-simulator");
