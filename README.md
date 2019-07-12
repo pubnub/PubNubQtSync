@@ -1,9 +1,14 @@
 # PubNubQtSync
 
-Best way to build and deploy to iPhone is using Qt Creator IDE.
+## Not a supported Qt SDK
+
+The actual [Qt SDK is here.](https://github.com/pubnub/c-core/tree/master/qt)
+
+The best way to build and deploy to iPhone is using the Qt Creator IDE.
 
 Install submodules to get the PubNub c-core dependency:
-```
+
+```bash
 git submodule update --init
 ```
 
